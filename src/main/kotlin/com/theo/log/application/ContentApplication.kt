@@ -2,15 +2,11 @@ package com.theo.log.application
 
 import com.theo.log.controller.response.ContentStatsResponse
 import com.theo.log.domain.jpa.service.ContentLikeService
-import com.theo.log.domain.jpa.service.ContentService
 import com.theo.log.domain.jpa.service.ReviewService
-import com.theo.log.domain.jpa.service.UserService
 import org.springframework.stereotype.Service
 
 @Service
 class ContentApplication(
-    val userService: UserService,
-    val contentService: ContentService,
     val reviewService: ReviewService,
     val contentLikeService: ContentLikeService,
 ) {
