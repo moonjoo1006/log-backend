@@ -5,4 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface ReviewAnswerRepository : JpaRepository<ReviewAnswer, Long>
+interface ReviewAnswerRepository : JpaRepository<ReviewAnswer, Long> {
+
+    fun findByReviewIdIn(reviewIds: List<Long>): List<ReviewAnswer>
+}

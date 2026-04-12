@@ -27,7 +27,7 @@ class Review(
     val rating: Byte? = null,
 
     @Column(nullable = false)
-    val public: Boolean = true,
+    val visible: Boolean = true,
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 16)

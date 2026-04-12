@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS review
     comment       TEXT,
     short_comment VARCHAR(512),
     rating        TINYINT,
-    public        TINYINT(1)  NOT NULL DEFAULT 1,
+    visible       TINYINT(1)  NOT NULL DEFAULT 1,
     status        VARCHAR(16) NOT NULL DEFAULT 'PUBLISHED',
     created_at    DATETIME(6) NOT NULL,
     updated_at    DATETIME(6) NOT NULL,
@@ -126,4 +126,27 @@ CREATE TABLE IF NOT EXISTS terms_agreement
     created_at DATETIME(6) NOT NULL,
     updated_at DATETIME(6) NOT NULL,
     PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS review_comment
+(
+    id         BIGINT      NOT NULL AUTO_INCREMENT,
+    review_id  BIGINT      NOT NULL,
+    user_id    BIGINT      NOT NULL,
+    content    TEXT        NOT NULL,
+    status     VARCHAR(16) NOT NULL DEFAULT 'ACTIVE',
+    created_at DATETIME(6) NOT NULL,
+    updated_at DATETIME(6) NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS review_comment_like
+(
+    id         BIGINT      NOT NULL AUTO_INCREMENT,
+    user_id    BIGINT      NOT NULL,
+    comment_id BIGINT      NOT NULL,
+    created_at DATETIME(6) NOT NULL,
+    updated_at DATETIME(6) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY uq_review_comment_like (user_id, comment_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

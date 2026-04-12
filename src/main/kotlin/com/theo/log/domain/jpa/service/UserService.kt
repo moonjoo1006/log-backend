@@ -17,4 +17,9 @@ class UserService(val userRepository: UserRepository) {
     fun findByAppUserId(appUserId: Long): User? {
         return userRepository.findByAppUserId(appUserId)
     }
+
+    @Transactional(readOnly = true)
+    fun getById(id: Long): User {
+        return userRepository.findById(id).orElseThrow { NoSuchElementException("존재하지 않는 유저입니다.") }
+    }
 }
